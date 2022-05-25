@@ -1,75 +1,17 @@
 import React from "react";
+import { useQuery } from "react-query";
+import Loading from "../Shared/Loading";
+import Product from "./Product";
 
 const Products = () => {
-  const service = [
-    {
-      _id: 1,
-      type: "Processor",
-      product: "Intel core i5",
-      available_quantity: 500,
-      minimum_order: 100,
-      price: 4500,
-      image: "https://i.ibb.co/3WkWp9H/i5-9500-0110-228x228.jpg",
-      description:
-        "Intel core i5 processor with 9th Genaration. This is an original product.",
-    },
-    {
-      _id: 2,
-      type: "Processor",
-      product: "Ryzen 5",
-      available_quantity: 500,
-      minimum_order: 100,
-      price: 5200,
-      image: "https://i.ibb.co/3dHvtM0/ryzen-5-pro-4650g-228x228.jpg",
-      description:
-        "Ryzen 5 processor with 11th Genaration. This is an original product.",
-    },
-    {
-      _id: 3,
-      type: "Processor",
-      product: "Intel core i5",
-      available_quantity: 400,
-      minimum_order: 50,
-      price: 4900,
-      image: "https://i.ibb.co/q1Djmx7/i5-10400-1-228x228.jpg",
-      description:
-        "Intel core i5 processor with 10th Genaration. This is an original product.",
-    },
-    {
-      _id: 4,
-      type: "Ram",
-      product: "Patriort 4Gb",
-      available_quantity: 999,
-      minimum_order: 150,
-      price: 1500,
-      image: "https://i.ibb.co/9pxbJXk/patriot-4gb-1600-bus-228x228.jpg",
-      description: "Patrior 4 Gb DDR-4 Ram. This is an original product.",
-    },
-    {
-      _id: 5,
-      type: "Ram",
-      product: "Adata 8Gb",
-      available_quantity: 300,
-      minimum_order: 70,
-      price: 3300,
-      image: "https://i.ibb.co/Nt35dLm/8gb-1-228x228.jpg",
-      description: "Adata DDR-4 Ram with 8gb. This is an original product.",
-    },
-    {
-      _id: 6,
-      type: "Ssd",
-      product: "Gygabyte 126 Gb",
-      available_quantity: 1000,
-      minimum_order: 120,
-      price: 2100,
-      image: "https://i.ibb.co/CmBCSHb/120gb-ssd-228x228.jpg",
-      description:
-        "This is Gigabyte brand 126Gb super fast Ssd. This is an original product.",
-    },
-  ];
-  console.log(JSON.stringify(service));
+  const { data: products, isLoading } = useQuery("products", () =>
+    fetch("products.json").then((res) => res.json())
+  );
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
-    <div className="container mx-auto my-10">
+    <div id="services" className="container mx-auto my-10 scroll-smooth">
       <div className="text-center py-10">
         <h2 className="text-2xl uppercase font-bold">
           we have only original product
@@ -77,6 +19,11 @@ const Products = () => {
         <h3 className="text-lg mt-3 capitalize font-bold">
           now pick a item which one do you need
         </h3>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {products.map((product) => (
+          <Product key={product._id} items={product}></Product>
+        ))}
       </div>
     </div>
   );
