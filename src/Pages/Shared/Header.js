@@ -78,7 +78,7 @@ const Header = () => {
         <div class="navbar-end hidden lg:flex ">
           <ul class="menu menu-horizontal p-0">{navItems}</ul>
         </div>
-        {location.pathname === "/dashboard" && (
+        {location.pathname.includes("dashboard") && (
           <div className="navbar-end lg:hidden">
             <label
               for="my-drawer-2"

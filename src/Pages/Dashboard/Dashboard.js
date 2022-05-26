@@ -3,13 +3,13 @@ import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
-    <div class="drawer drawer-mobile">
+    <div class="drawer drawer-mobile container mx-auto">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content flex flex-col items-center justify-center">
+      <div class="drawer-content">
         {/* <!-- Page content here --> */}
         <Outlet></Outlet>
       </div>
-      <div class="drawer-side">
+      <div class="drawer-side  lg:w-64">
         <label for="my-drawer-2" class="drawer-overlay"></label>
         <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here  */}
