@@ -11,7 +11,7 @@ const Banner = () => {
           </h2>
           <a
             href="#services"
-            className="btn btn-info btn-outline uppercase mt-36 animate__animated animate__backInUp ..................................................."
+            className="btn btn-info btn-outline uppercase mt-36 animate__animated animate__backInUp"
           >
             explore us
           </a>
