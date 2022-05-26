@@ -29,9 +29,7 @@ const Product = ({ items }) => {
         </div>
         <p className="text-gray-500">Description : {description}</p>
         <div class="card-actions">
-          <button class="btn btn-info btn-outline w-full mt-5">
-            Order now
-          </button>
+          <button class="btn btn-info  w-full mt-5">Order now</button>
         </div>
       </div>
     </div>

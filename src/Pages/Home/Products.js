@@ -13,7 +13,7 @@ const Products = () => {
   return (
     <div id="services" className="container mx-auto my-10 scroll-smooth">
       <div className="text-center py-10">
-        <h2 className="text-2xl uppercase font-bold">
+        <h2 className="text-4xl uppercase font-bold text-accent">
           we have only original product
         </h2>
         <h3 className="text-lg mt-3 capitalize font-bold">
