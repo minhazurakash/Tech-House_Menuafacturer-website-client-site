@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import Discount from "./Discount";
 import Newslater from "./Newslater";
 import Products from "./Products";
+import Reviews from "./Reviews";
 import Summary from "./Summary";
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
       <Discount></Discount>
       <Products></Products>
       <Summary></Summary>
+      <Reviews></Reviews>
       <Newslater></Newslater>
       <Footer></Footer>
     </>

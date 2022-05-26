@@ -9,7 +9,7 @@ const Summary = () => {
         </h2>
         <p>Learn more about us.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center">
         <div class="bg-base-200 p-4 rounded-xl shadow-lg">
           <div class="text-accent mb-5">
             <i class="fa-solid fa-flag text-7xl"></i>

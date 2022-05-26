@@ -2,7 +2,7 @@ import React from "react";
 
 const Discount = () => {
   return (
-    <div class="hero py-28">
+    <div class=" py-28">
       <div className="container mx-auto text-center">
         <h2 className="text-4xl lg:text-5xl uppercase mb-10 text-center font-bold text-accent">
           Would you like to grab a discount?
