@@ -5,7 +5,7 @@ import Product from "./Product";
 
 const Products = () => {
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("products.json").then((res) => res.json())
+    fetch("http://localhost:5000/products").then((res) => res.json())
   );
   if (isLoading) {
     return <Loading></Loading>;
@@ -20,7 +20,7 @@ const Products = () => {
           now pick a item which one do you need
         </h3>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
         {products.map((product) => (
           <Product key={product._id} items={product}></Product>
         ))}

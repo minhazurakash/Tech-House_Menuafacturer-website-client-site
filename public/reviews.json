@@ -9,42 +9,42 @@
   },
   {
     "_id": 1,
-    "name": "Akash Rahman",
-    "email": "akash@batash.com",
+    "name": "Kausar Ali",
+    "email": "kausar@gmail.com",
+    "image": "https://api.lorem.space/image/face?hash=3174",
+    "rating": 5,
+    "review": "I am a regular customer of Tech House. they are very good. i loved their services."
+  },
+  {
+    "_id": 1,
+    "name": "Rabbi Rahman",
+    "email": "rabbi@rahman.com",
     "image": "https://api.lorem.space/image/face?hash=3174",
     "rating": 5,
     "review": "I'm very possitive about their service. They are very professional. Their products are also very good."
   },
   {
     "_id": 1,
-    "name": "Akash Rahman",
-    "email": "akash@batash.com",
+    "name": "Salman khan",
+    "email": "salman@gmail.com",
     "image": "https://api.lorem.space/image/face?hash=3174",
     "rating": 5,
-    "review": "I'm very possitive about their service. They are very professional. Their products are also very good."
+    "review": "I love their services. Highly recommened them."
   },
   {
     "_id": 1,
-    "name": "Akash Rahman",
-    "email": "akash@batash.com",
+    "name": "Sami ahmed",
+    "email": "sami@gmail.com",
     "image": "https://api.lorem.space/image/face?hash=3174",
     "rating": 5,
-    "review": "I'm very possitive about their service. They are very professional. Their products are also very good."
+    "review": "They are very good. I highly recommened their service."
   },
   {
     "_id": 1,
-    "name": "Akash Rahman",
-    "email": "akash@batash.com",
+    "name": "Sakib ",
+    "email": "Sakib@gmail.com",
     "image": "https://api.lorem.space/image/face?hash=3174",
     "rating": 5,
-    "review": "I'm very possitive about their service. They are very professional. Their products are also very good."
-  },
-  {
-    "_id": 1,
-    "name": "Akash Rahman",
-    "email": "akash@batash.com",
-    "image": "https://api.lorem.space/image/face?hash=3174",
-    "rating": 5,
-    "review": "I'm very possitive about their service. They are very professional. Their products are also very good."
+    "review": "They are very professional. Their products are also very good."
   }
 ]

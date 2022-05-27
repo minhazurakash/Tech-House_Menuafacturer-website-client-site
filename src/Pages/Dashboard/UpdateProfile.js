@@ -1,13 +1,57 @@
-import React from "react";
+import { async } from "@firebase/util";
+import React, { useEffect } from "react";
+import { useAuthState, useUpdateProfile } from "react-firebase-hooks/auth";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 
 const UpdateProfile = () => {
-  const handleUpdate = (event) => {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const number = event.target.number.value;
-    const file = event.target.photo.file;
-    const doc = { name, number, file };
-    console.log(doc);
+  const { register, handleSubmit, reset } = useForm();
+  const [updateProfile, updating, error] = useUpdateProfile(auth);
+  const [user] = useAuthState(auth);
+  console.log(user);
+  const imageBB = "aa4aaa3a9ccbadaf185b172aaa46e5ff";
+  useEffect(() => {
+    if (error) {
+      toast.error(error.code.split("/")[1], {
+        autoClose: 1000,
+        position: "top-center",
+      });
+    }
+  }, [error]);
+
+  if (updating) {
+    return <Loading></Loading>;
+  }
+  const onSubmit = (data) => {
+    const name = data.name;
+    const number = data.number;
+    const photo = data.photo[0];
+    const formData = new FormData();
+    formData.append("image", photo);
+    const url = `https://api.imgbb.com/1/upload?key=${imageBB}`;
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then(async (result) => {
+        if (result.success) {
+          const photoUrl = result.data.url;
+          await updateProfile({
+            displayName: name,
+            photoURL: photoUrl,
+            phoneNumber: number,
+          });
+          reset();
+          toast.success("Update successful", {
+            autoClose: 1000,
+            position: "top-center",
+          });
+        }
+      });
   };
   return (
     <div className="flex justify-center mt-14">
@@ -16,11 +60,11 @@ const UpdateProfile = () => {
           <h1 class="text-4xl mb-5 font-bold text-center">
             Update your profile!
           </h1>
-          <form onSubmit={handleUpdate} className="grid gap-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
             <div>
               <label className="lebel-text label">Name</label>
               <input
-                name="name"
+                {...register("name")}
                 type="name"
                 placeholder="Enter your name"
                 class="input input-bordered input-accent w-full bg-transparent"
@@ -30,7 +74,7 @@ const UpdateProfile = () => {
             <div>
               <label className="lebel-text label">Phone number</label>
               <input
-                name="number"
+                {...register("number")}
                 type="number"
                 placeholder="Enter your password"
                 class="input input-bordered input-accent w-full bg-transparent"
@@ -40,7 +84,7 @@ const UpdateProfile = () => {
             <div>
               <label className="lebel-text label">Your photo</label>
               <input
-                name="photo"
+                {...register("photo")}
                 type="file"
                 placeholder="Enter your password"
                 class="input input-bordered input-accent w-full bg-transparent"

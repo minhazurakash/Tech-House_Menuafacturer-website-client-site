@@ -12,13 +12,19 @@ const MyProfile = () => {
   console.log(user);
   return (
     <div className="m-8">
-      <h2 className="mb-5 text-accent font-bold uppercase text-4xl">
+      <h2 className="mb-5 text-center text-accent font-bold uppercase text-4xl">
         my profile
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div class="avatar">
           <div class="w-full rounded-xl">
-            <img src="https://api.lorem.space/image/face?hash=64318" alt="" />
+            <img
+              src={
+                user?.photoURL ||
+                "https://api.lorem.space/image/face?hash=64318"
+              }
+              alt=""
+            />
           </div>
         </div>
         <div>
@@ -46,23 +52,12 @@ const MyProfile = () => {
           </div>
           <div>
             <div className="label font-bold text-xl">
-              <label>Phone number</label>
-            </div>
-            <input
-              type="text"
-              className="input input-bordered rounded-sm w-full focus:border-0 text-xl"
-              value={user?.phoneNumber || "Number not found"}
-              readOnly
-            />
-          </div>
-          <div>
-            <div className="label font-bold text-xl">
               <label>Last sign in time</label>
             </div>
             <input
               type="text"
               className="input input-bordered rounded-sm w-full focus:border-0 text-xl"
-              value={user?.metadata?.lastSignInTime || "Number not found"}
+              value={user?.metadata?.lastSignInTime || "oppsss......."}
               readOnly
             />
           </div>
