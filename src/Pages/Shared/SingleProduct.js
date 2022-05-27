@@ -1,17 +1,21 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import auth from "../../firebase.init";
 import Loading from "./Loading";
 
 const SingleProduct = () => {
   const { _id } = useParams();
+  const [user, loading] = useAuthState(auth);
   const [canOrder, setCanOrder] = useState(true);
   const [inputValue, setInputValue] = useState(0);
+  const navigate = useNavigate();
   const { data: SingleProduct, isLoading } = useQuery("product", () =>
     fetch(`http://localhost:5000/product/${_id}`).then((res) => res.json())
   );
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loading></Loading>;
   }
   const handleMinimumQuntity = (event) => {
@@ -21,6 +25,16 @@ const SingleProduct = () => {
   const handleConfirmOrder = () => {
     const minimumOrder = SingleProduct.minimum_order;
     const availableQuantity = SingleProduct.available_quantity;
+    const order = {
+      name: user.displayName,
+      email: user.email,
+      product: SingleProduct.product,
+      price: SingleProduct.price,
+      quantity: inputValue,
+      totalPrice: inputValue * SingleProduct.price,
+      status: "pending",
+      paid: false,
+    };
     if (inputValue < minimumOrder) {
       setCanOrder(false);
       toast.error(`please order Minimum ${minimumOrder} piece`, {
@@ -37,6 +51,23 @@ const SingleProduct = () => {
       });
       return;
     }
+    fetch("http://localhost:5000/orders", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Your order is booked", {
+            autoClose: 1000,
+            position: "top-center",
+          });
+          navigate("/dashboard/myorder");
+        }
+      });
   };
   return (
     <div className="container mx-auto">
