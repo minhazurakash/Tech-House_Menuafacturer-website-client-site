@@ -12,6 +12,7 @@ const Products = () => {
       },
     }).then((res) => res.json())
   );
+  console.log(products);
   if (isLoading) {
     return <Loading></Loading>;
   }

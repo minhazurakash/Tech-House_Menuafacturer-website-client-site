@@ -35,7 +35,7 @@ const ManageOrder = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product, index) => (
+              {products?.map((product, index) => (
                 <ManageOrderRow
                   key={product._id}
                   items={product}
