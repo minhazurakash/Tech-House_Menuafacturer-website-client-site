@@ -1,14 +1,20 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 import ManageProductRow from "./ManageProductRow";
+import ProductDeleteModal from "./ProductDeleteModal";
 
 const ManageProducts = () => {
   const navigate = useNavigate();
-  const { data: products, isLoading } = useQuery("products", () =>
+  const [modalData, setModalData] = useState({});
+  const {
+    data: products,
+    isLoading,
+    refetch,
+  } = useQuery("products", () =>
     fetch("http://localhost:5000/products", {
       method: "GET",
       headers: {
@@ -49,12 +55,20 @@ const ManageProducts = () => {
                   key={product._id}
                   items={product}
                   index={index}
+                  setModalData={setModalData}
                 ></ManageProductRow>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+      {modalData && (
+        <ProductDeleteModal
+          modalData={modalData}
+          setModalData={setModalData}
+          refetch={refetch}
+        ></ProductDeleteModal>
+      )}
     </div>
   );
 };

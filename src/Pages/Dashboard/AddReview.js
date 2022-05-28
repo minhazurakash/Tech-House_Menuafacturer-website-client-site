@@ -1,6 +1,15 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 
 const AddReview = () => {
+  const [user, loading] = useAuthState(auth);
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
   const handleRating = (event) => {
     const rating = event.target.value;
     if (rating > 5) {
@@ -15,7 +24,28 @@ const AddReview = () => {
     event.preventDefault();
     const rating = event.target.rating.value;
     const review = event.target.review.value;
-    console.log(rating, review);
+    const name = user.displayName;
+    const email = user.email;
+    const image =
+      user.photoURL || "https://i.ibb.co/HTHRkjj/doctor-profile-350x350.png";
+    const reviewDoc = { rating, review, name, email, image };
+
+    fetch("http://localhost:5000/review", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reviewDoc),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Product added successful", {
+            autoClose: 1000,
+            position: "top-center",
+          });
+        }
+      });
   };
   return (
     <div className="justify-center flex">

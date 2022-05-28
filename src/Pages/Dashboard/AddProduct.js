@@ -47,12 +47,13 @@ const AddProduct = () => {
             price,
             product,
             type,
-            photoUrl,
+            image: photoUrl,
           };
           fetch("http://localhost:5000/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",
+              authoraization: `bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify(doc),
           })
