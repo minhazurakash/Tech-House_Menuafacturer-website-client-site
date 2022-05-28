@@ -19,6 +19,7 @@ import ManageOrder from "./Pages/Dashboard/ManageOrder";
 import AddProduct from "./Pages/Dashboard/AddProduct";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 import ManageProducts from "./Pages/Dashboard/ManageProducts";
+import RequireAuth from "./Pages/Shared/RequireAuth";
 
 function App() {
   return (
@@ -31,7 +32,14 @@ function App() {
         <Route path="/reset" element={<Reset></Reset>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
-        <Route path="/dashboard" element={<Dashboard />}>
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        >
           <Route index element={<MyProfile />}></Route>
           <Route path="myprofile" element={<MyProfile />}></Route>
           <Route path="myorder" element={<MyOrder />}></Route>
@@ -47,7 +55,11 @@ function App() {
         </Route>
         <Route
           path="/product/:_id"
-          element={<SingleProduct></SingleProduct>}
+          element={
+            <RequireAuth>
+              <SingleProduct></SingleProduct>
+            </RequireAuth>
+          }
         ></Route>
       </Routes>
 

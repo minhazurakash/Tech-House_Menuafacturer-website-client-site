@@ -3,7 +3,7 @@ import {
   useAuthState,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import GoogleSignIn from "./GoogleSignIn";
@@ -13,7 +13,9 @@ const Login = () => {
   const [user, loading] = useAuthState(auth);
   const [signInWithEmailAndPassword, loginUser, loginLoading, loginError] =
     useSignInWithEmailAndPassword(auth);
+  const location = useLocation();
   const navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     if (loginError) {
@@ -23,7 +25,7 @@ const Login = () => {
       });
     }
     if (user) {
-      navigate("/");
+      navigate(from, { replace: true });
     }
   }, [loginError, user]);
 
