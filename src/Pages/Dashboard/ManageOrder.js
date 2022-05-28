@@ -4,7 +4,11 @@ import Loading from "../Shared/Loading";
 import ManageOrderRow from "./ManageOrderRow";
 
 const ManageOrder = () => {
-  const { data: products, isLoading } = useQuery("product", () =>
+  const {
+    data: products,
+    isLoading,
+    refetch,
+  } = useQuery("product", () =>
     fetch("http://localhost:5000/orders").then((res) => res.json())
   );
   if (isLoading) {
@@ -33,6 +37,7 @@ const ManageOrder = () => {
                   key={product._id}
                   items={product}
                   index={index}
+                  refetch={refetch}
                 ></ManageOrderRow>
               ))}
             </tbody>
