@@ -20,6 +20,7 @@ import AddProduct from "./Pages/Dashboard/AddProduct";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import RequireAuth from "./Pages/Shared/RequireAuth";
+import NotFound from "./Pages/Shared/NotFound";
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/signup" element={<Signup></Signup>}></Route>
+        <Route path="/signup" element={<Signup></Signup>}></Route>3
+        <Route path="*" element={<NotFound />}></Route>
         <Route path="/reset" element={<Reset></Reset>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
@@ -42,6 +44,7 @@ function App() {
         >
           <Route index element={<MyProfile />}></Route>
           <Route path="myprofile" element={<MyProfile />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
           <Route path="myorder" element={<MyOrder />}></Route>
           <Route path="addreview" element={<AddReview />}></Route>
           <Route path="manageOrder" element={<ManageOrder />}></Route>
