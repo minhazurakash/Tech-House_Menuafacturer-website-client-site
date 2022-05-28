@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-const ManageOrderRow = ({ items, index, refetch }) => {
+const ManageOrderRow = ({ items, index, refetch, setModalData }) => {
   const { _id, name, email, product, totalPrice, quantity, status } = items;
 
   const handleDeliver = () => {
@@ -23,6 +23,10 @@ const ManageOrderRow = ({ items, index, refetch }) => {
         }
       });
   };
+  const handleDeleteModal = () => {
+    setModalData(items);
+  };
+
   return (
     <tr>
       <th>{index + 1}</th>
@@ -43,7 +47,13 @@ const ManageOrderRow = ({ items, index, refetch }) => {
             <button onClick={handleDeliver} className="btn btn-xs btn-success">
               Delivery
             </button>
-            <button className="btn btn-xs btn-warning ml-2">Delete</button>
+            <label
+              onClick={handleDeleteModal}
+              for="my-modal-2"
+              class="btn btn-xs btn-warning"
+            >
+              Delete
+            </label>
           </>
         )}
       </td>

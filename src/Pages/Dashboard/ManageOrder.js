@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 import ManageOrderRow from "./ManageOrderRow";
+import OrderDeleteModal from "./OrderDeleteModal";
 
 const ManageOrder = () => {
+  const [modalData, setModalData] = useState({});
+
   const {
     data: products,
     isLoading,
@@ -38,12 +41,20 @@ const ManageOrder = () => {
                   items={product}
                   index={index}
                   refetch={refetch}
+                  setModalData={setModalData}
                 ></ManageOrderRow>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+      {modalData && (
+        <OrderDeleteModal
+          modalData={modalData}
+          setModalData={setModalData}
+          refetch={refetch}
+        ></OrderDeleteModal>
+      )}
     </div>
   );
 };

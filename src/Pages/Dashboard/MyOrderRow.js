@@ -1,6 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const MyOrderRow = ({ order, index }) => {
+const MyOrderRow = ({ order, index, refetch }) => {
+  const cancelOrder = () => {
+    fetch(`http://localhost:5000/myorder/${order._id}`, {
+      method: "DELETE",
+      headers: {
+        authoraization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          toast.success("Delete Success", {
+            autoClose: 1000,
+            position: "top-center",
+          });
+        }
+        refetch();
+      });
+  };
   return (
     <tr>
       <th>{index + 1}</th>
@@ -18,9 +38,13 @@ const MyOrderRow = ({ order, index }) => {
       </td>
       <td>
         {order.status !== "delivered" && (
-          <button className="btn btn-xs btn-warning mr-2">Cancel</button>
+          <button onClick={cancelOrder} className="btn btn-xs btn-warning mr-2">
+            Cancel
+          </button>
         )}
-        <button className="btn btn-xs btn-success">Make Payment</button>
+        <Link to={`/payment/${order._id}`}>
+          <button className="btn btn-xs btn-success">Make Payment</button>
+        </Link>
       </td>
     </tr>
   );

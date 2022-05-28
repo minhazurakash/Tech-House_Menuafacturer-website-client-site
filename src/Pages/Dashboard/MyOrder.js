@@ -7,7 +7,11 @@ import MyOrderRow from "./MyOrderRow";
 const MyOrder = () => {
   const [user, Loading] = useAuthState(auth);
   console.log(user);
-  const { data: orders, isLoading } = useQuery(["orders", user?.email], () =>
+  const {
+    data: orders,
+    isLoading,
+    refetch,
+  } = useQuery(["orders", user?.email], () =>
     fetch(`http://localhost:5000/myorders?email=${user?.email}`).then((res) =>
       res.json()
     )
@@ -39,6 +43,7 @@ const MyOrder = () => {
                   key={order._id}
                   order={order}
                   index={index}
+                  refetch={refetch}
                 ></MyOrderRow>
               ))}
             </tbody>
