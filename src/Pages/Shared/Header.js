@@ -11,6 +11,7 @@ const Header = () => {
 
   const handleSignOut = () => {
     signOut(auth);
+    localStorage.removeItem("accessToken");
     toast.success("Logout successful", {
       autoClose: 1000,
       position: "top-center",

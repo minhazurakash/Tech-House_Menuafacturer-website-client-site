@@ -1,11 +1,27 @@
+import { signOut } from "firebase/auth";
 import React from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 import ManageProductRow from "./ManageProductRow";
 
 const ManageProducts = () => {
+  const navigate = useNavigate();
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("http://localhost:5000/products").then((res) => res.json())
+    fetch("http://localhost:5000/products", {
+      method: "GET",
+      headers: {
+        authoraization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => {
+      if (res.status == 401 || res.status == 403) {
+        signOut(auth);
+        localStorage.removeItem("accessToken");
+        navigate("/login");
+      }
+      return res.json();
+    })
   );
   if (isLoading) {
     return <Loading></Loading>;

@@ -6,6 +6,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import useToken from "../../HOOKS/useToken";
 import GoogleSignIn from "./GoogleSignIn";
 import Loading from "./Loading";
 
@@ -13,6 +14,7 @@ const Login = () => {
   const [user, loading] = useAuthState(auth);
   const [signInWithEmailAndPassword, loginUser, loginLoading, loginError] =
     useSignInWithEmailAndPassword(auth);
+  const [token] = useToken(user);
   const location = useLocation();
   const navigate = useNavigate();
   let from = location.state?.from?.pathname || "/";
@@ -24,10 +26,10 @@ const Login = () => {
         position: "top-center",
       });
     }
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [loginError, user]);
+  }, [loginError, token]);
 
   if (loading || loginLoading) {
     return <Loading></Loading>;
