@@ -1,6 +1,19 @@
 import React from "react";
+import { useQuery } from "react-query";
+import Loading from "../Shared/Loading";
+import MakeAdminRow from "./MakeAdminRow";
 
 const MakeAdmin = () => {
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("users", () =>
+    fetch("http://localhost:5000/users").then((res) => res.json())
+  );
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <h2 className="text-center font-bold text-3xl uppercase mt-5">
@@ -12,20 +25,19 @@ const MakeAdmin = () => {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Name</th>
                 <th>Email</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>
-                  <button className="btn btn-xs">make admin</button>
-                </td>
-              </tr>
+              {users.map((user, index) => (
+                <MakeAdminRow
+                  key={user._id}
+                  user={user}
+                  index={index}
+                  refetch={refetch}
+                ></MakeAdminRow>
+              ))}
             </tbody>
           </table>
         </div>

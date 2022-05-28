@@ -95,7 +95,7 @@ const UpdateProfile = () => {
             <input
               type="submit"
               class="btn btn-bordered btn-accent w-full mt-5"
-              value="Signup"
+              value="Update"
             />
           </form>
         </div>

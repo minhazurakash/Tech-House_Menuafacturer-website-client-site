@@ -8,6 +8,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import useToken from "../../HOOKS/useToken";
 import GoogleSignIn from "./GoogleSignIn";
 import Loading from "./Loading";
 
@@ -16,6 +17,7 @@ const Signup = () => {
   const [createUserWithEmailAndPassword, passUser, passLoading, PassError] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile] = useUpdateProfile(auth);
+  const [token] = useToken(user);
   const navigate = useNavigate();
 
   // display error or success message
@@ -26,14 +28,14 @@ const Signup = () => {
         position: "top-center",
       });
     }
-    if (user) {
+    if (token) {
       toast.success("Successfully create a accaount", {
         autoClose: 1000,
         position: "top-center",
       });
       navigate("/");
     }
-  }, [PassError, user]);
+  }, [PassError, token]);
   if (loading || passLoading) {
     return <Loading></Loading>;
   }
