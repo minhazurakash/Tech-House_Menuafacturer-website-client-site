@@ -1,6 +1,21 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useQuery } from "react-query";
+import auth from "../../firebase.init";
+import MyOrderRow from "./MyOrderRow";
 
 const MyOrder = () => {
+  const [user, Loading] = useAuthState(auth);
+  console.log(user);
+  const { data: orders, isLoading } = useQuery(["orders", user?.email], () =>
+    fetch(`http://localhost:5000/myorders?email=${user?.email}`).then((res) =>
+      res.json()
+    )
+  );
+  if (isLoading || Loading) {
+    return "Loading....";
+  }
+  console.log(orders);
   return (
     <div>
       <h2 className="text-center text-3xl font-bold uppercase mt-5">
@@ -19,13 +34,13 @@ const MyOrder = () => {
               </tr>
             </thead>
             <tbody>
-              {/* {products.map((product, index) => (
-                <ManageOrderRow
-                  key={product._id}
-                  items={product}
+              {orders.map((order, index) => (
+                <MyOrderRow
+                  key={order._id}
+                  order={order}
                   index={index}
-                ></ManageOrderRow>
-              ))} */}
+                ></MyOrderRow>
+              ))}
             </tbody>
           </table>
         </div>
