@@ -21,7 +21,7 @@ const MyProfile = () => {
             <img
               src={
                 user?.photoURL ||
-                "https://api.lorem.space/image/face?hash=64318"
+                "https://i.ibb.co/HTHRkjj/doctor-profile-350x350.png"
               }
               alt=""
             />
