@@ -49,7 +49,7 @@ const AddProduct = () => {
             type,
             image: photoUrl,
           };
-          fetch("http://localhost:5000/products", {
+          fetch("https://dry-reaches-86494.herokuapp.com/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",

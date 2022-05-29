@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const MyOrderRow = ({ order, index, refetch }) => {
   const cancelOrder = () => {
-    fetch(`http://localhost:5000/myorder/${order._id}`, {
+    fetch(`https://dry-reaches-86494.herokuapp.com/myorder/${order._id}`, {
       method: "DELETE",
       headers: {
         authoraization: `bearer ${localStorage.getItem("accessToken")}`,

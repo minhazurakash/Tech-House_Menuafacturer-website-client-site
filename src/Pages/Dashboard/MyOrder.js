@@ -12,9 +12,9 @@ const MyOrder = () => {
     isLoading,
     refetch,
   } = useQuery(["orders", user?.email], () =>
-    fetch(`http://localhost:5000/myorders?email=${user?.email}`).then((res) =>
-      res.json()
-    )
+    fetch(
+      `https://dry-reaches-86494.herokuapp.com/myorders?email=${user?.email}`
+    ).then((res) => res.json())
   );
   if (isLoading || Loading) {
     return "Loading....";
@@ -32,7 +32,7 @@ const MyOrder = () => {
               <tr>
                 <th>#</th>
                 <th>Product</th>
-                <th>Order By</th>
+                <th>Status</th>
                 <th>Details</th>
                 <th>Action</th>
               </tr>

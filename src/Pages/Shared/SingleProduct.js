@@ -13,7 +13,9 @@ const SingleProduct = () => {
   const [inputValue, setInputValue] = useState(0);
   const navigate = useNavigate();
   const { data: SingleProduct, isLoading } = useQuery("product", () =>
-    fetch(`http://localhost:5000/product/${_id}`).then((res) => res.json())
+    fetch(`https://dry-reaches-86494.herokuapp.com/product/${_id}`).then(
+      (res) => res.json()
+    )
   );
   if (isLoading || loading) {
     return <Loading></Loading>;
@@ -51,7 +53,7 @@ const SingleProduct = () => {
       });
       return;
     }
-    fetch("http://localhost:5000/orders", {
+    fetch("https://dry-reaches-86494.herokuapp.com/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",

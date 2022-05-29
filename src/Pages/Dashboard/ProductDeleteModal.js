@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const ProductDeleteModal = ({ modalData, setModalData, refetch }) => {
   const handleDelete = () => {
-    fetch(`http://localhost:5000/product/${modalData._id}`, {
+    fetch(`https://dry-reaches-86494.herokuapp.com/product/${modalData._id}`, {
       method: "DELETE",
       headers: {
         authoraization: `bearer ${localStorage.getItem("accessToken")}`,

@@ -30,7 +30,7 @@ const AddReview = () => {
       user.photoURL || "https://i.ibb.co/HTHRkjj/doctor-profile-350x350.png";
     const reviewDoc = { rating, review, name, email, image };
 
-    fetch("http://localhost:5000/review", {
+    fetch("https://dry-reaches-86494.herokuapp.com/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

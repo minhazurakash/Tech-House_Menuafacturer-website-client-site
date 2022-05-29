@@ -15,7 +15,7 @@ const ManageProducts = () => {
     isLoading,
     refetch,
   } = useQuery("products", () =>
-    fetch("http://localhost:5000/products", {
+    fetch("https://dry-reaches-86494.herokuapp.com/products", {
       method: "GET",
       headers: {
         authoraization: `bearer ${localStorage.getItem("accessToken")}`,
