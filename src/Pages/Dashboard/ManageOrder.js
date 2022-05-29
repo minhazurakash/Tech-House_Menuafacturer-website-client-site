@@ -37,15 +37,16 @@ const ManageOrder = () => {
               </tr>
             </thead>
             <tbody>
-              {products?.map((product, index) => (
-                <ManageOrderRow
-                  key={product._id}
-                  items={product}
-                  index={index}
-                  refetch={refetch}
-                  setModalData={setModalData}
-                ></ManageOrderRow>
-              ))}
+              {products &&
+                products?.map((product, index) => (
+                  <ManageOrderRow
+                    key={product._id}
+                    items={product}
+                    index={index}
+                    refetch={refetch}
+                    setModalData={setModalData}
+                  ></ManageOrderRow>
+                ))}
             </tbody>
           </table>
         </div>
