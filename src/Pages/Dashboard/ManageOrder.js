@@ -12,8 +12,8 @@ const ManageOrder = () => {
     isLoading,
     refetch,
   } = useQuery("product", () =>
-    fetch("https://dry-reaches-86494.herokuapp.com/orders").then((res) =>
-      res.json()
+    fetch("https://techhouse-server-production.up.railway.app/orders").then(
+      (res) => res.json()
     )
   );
   if (isLoading) {

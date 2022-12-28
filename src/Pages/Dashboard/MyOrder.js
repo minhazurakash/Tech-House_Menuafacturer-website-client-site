@@ -13,7 +13,7 @@ const MyOrder = () => {
     refetch,
   } = useQuery(["orders", user?.email], () =>
     fetch(
-      `https://dry-reaches-86494.herokuapp.com/myorders?email=${user?.email}`
+      `https://techhouse-server-production.up.railway.app/myorders?email=${user?.email}`
     ).then((res) => res.json())
   );
   if (isLoading || Loading) {

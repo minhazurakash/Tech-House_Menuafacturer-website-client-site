@@ -13,9 +13,9 @@ const SingleProduct = () => {
   const [inputValue, setInputValue] = useState(0);
   const navigate = useNavigate();
   const { data: SingleProduct, isLoading } = useQuery("product", () =>
-    fetch(`https://dry-reaches-86494.herokuapp.com/product/${_id}`).then(
-      (res) => res.json()
-    )
+    fetch(
+      `https://techhouse-server-production.up.railway.app/product/${_id}`
+    ).then((res) => res.json())
   );
   if (isLoading || loading) {
     return <Loading></Loading>;
@@ -53,7 +53,7 @@ const SingleProduct = () => {
       });
       return;
     }
-    fetch("https://dry-reaches-86494.herokuapp.com/orders", {
+    fetch("https://techhouse-server-production.up.railway.app/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",

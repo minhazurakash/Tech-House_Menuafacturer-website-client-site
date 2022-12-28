@@ -4,12 +4,15 @@ import { toast } from "react-toastify";
 
 const MyOrderRow = ({ order, index, refetch }) => {
   const cancelOrder = () => {
-    fetch(`https://dry-reaches-86494.herokuapp.com/myorder/${order._id}`, {
-      method: "DELETE",
-      headers: {
-        authoraization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://techhouse-server-production.up.railway.app/myorder/${order._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authoraization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {

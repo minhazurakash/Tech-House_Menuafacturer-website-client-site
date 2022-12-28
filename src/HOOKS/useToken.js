@@ -6,13 +6,16 @@ const useToken = (user) => {
     const email = user?.email;
     const currentUser = { email: email };
     if (email) {
-      fetch(`https://dry-reaches-86494.herokuapp.com/user/${email}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(currentUser),
-      })
+      fetch(
+        `https://techhouse-server-production.up.railway.app/user/${email}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log("inside", data);

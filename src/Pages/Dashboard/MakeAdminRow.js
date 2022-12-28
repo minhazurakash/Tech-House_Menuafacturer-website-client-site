@@ -3,13 +3,16 @@ import { toast } from "react-toastify";
 
 const MakeAdminRow = ({ user, index, refetch }) => {
   const handleMakeAdmin = () => {
-    fetch(`https://dry-reaches-86494.herokuapp.com/admin/${user.email}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-        authoraization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://techhouse-server-production.up.railway.app/admin/${user.email}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authoraization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

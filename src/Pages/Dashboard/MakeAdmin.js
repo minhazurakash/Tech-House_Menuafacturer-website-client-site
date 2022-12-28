@@ -9,8 +9,8 @@ const MakeAdmin = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch("https://dry-reaches-86494.herokuapp.com/users").then((res) =>
-      res.json()
+    fetch("https://techhouse-server-production.up.railway.app/users").then(
+      (res) => res.json()
     )
   );
   if (isLoading) {

@@ -3,12 +3,15 @@ import { toast } from "react-toastify";
 
 const OrderDeleteModal = ({ modalData, setModalData, refetch }) => {
   const handleDelete = () => {
-    fetch(`https://dry-reaches-86494.herokuapp.com/order/${modalData._id}`, {
-      method: "DELETE",
-      headers: {
-        authoraization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://techhouse-server-production.up.railway.app/order/${modalData._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authoraization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {

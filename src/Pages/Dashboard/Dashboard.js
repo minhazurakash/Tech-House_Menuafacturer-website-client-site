@@ -7,8 +7,8 @@ import Loading from "../Shared/Loading";
 
 const Dashboard = () => {
   const { data: databaseUser, isLoading } = useQuery("user", () =>
-    fetch("https://dry-reaches-86494.herokuapp.com/users").then((res) =>
-      res.json()
+    fetch("https://techhouse-server-production.up.railway.app/users").then(
+      (res) => res.json()
     )
   );
   const [user, Loading] = useAuthState(auth);

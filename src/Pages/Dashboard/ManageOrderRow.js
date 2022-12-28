@@ -5,7 +5,7 @@ const ManageOrderRow = ({ items, index, refetch, setModalData }) => {
   const { _id, name, email, product, totalPrice, quantity, status } = items;
 
   const handleDeliver = () => {
-    fetch(`https://dry-reaches-86494.herokuapp.com/deliver/${_id}`, {
+    fetch(`https://techhouse-server-production.up.railway.app/deliver/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -49,7 +49,7 @@ const AddProduct = () => {
             type,
             image: photoUrl,
           };
-          fetch("https://dry-reaches-86494.herokuapp.com/products", {
+          fetch("https://techhouse-server-production.up.railway.app/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",
